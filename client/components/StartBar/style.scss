@@ -1,0 +1,30 @@
+.startBar {
+  box-shadow: inset 1px 0 #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: silver;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-top: 1px solid #f4f4f4;
+  border-bottom: 1px solid #4e4e4e;
+  position: fixed;
+  z-index: 9;
+  height: 33px;
+}
+
+.break {
+  height: 25px;
+  margin-left: auto;
+  margin-right: 3px;
+  border-left: 1px solid #303030;
+  border-right: 1px solid white;
+}
+
+.breakLeft {
+  border-left: 1px solid #303030;
+  height: 25px;
+  border-right: 1px solid white;
+  margin-left: 3px;
+}

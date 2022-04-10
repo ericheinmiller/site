@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'MyFont';
+  src:  url('../../px_sans_nouveaux.ttf') format('truetype');
+}
+
+.text--visible {
+  color: black;
+}
+
+.text--invisible {
+  color: silver;
+}
+
+.clock {
+  margin-right: 5px;
+  border-bottom: 1px solid white;
+  border-right: 1px solid white;
+  border-top: 1px solid #303030;
+  border-left: 1px solid #303030;
+  height: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  background-color: #bdbdbd;
+  img {
+    margin: 2px;
+  }
+}
+
+.clockText {
+  margin-left: 10px;
+  font-family: MyFont;
+  font-size: 10px;
+  display: flex;
+  flex-direction: row;
+}

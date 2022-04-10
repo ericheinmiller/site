@@ -1,0 +1,24 @@
+.startBarButton {
+  margin-left: 5px;
+  width: 70px;
+  height: 25px;
+  border-top: 2px solid white;
+  border-left: 2px solid white;
+  border-bottom: 3px solid black;
+  border-right: 3px solid black;
+};
+
+.startBarButtonWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-bottom: 2px solid gray;
+  border-right: 2px solid gray;
+}
+
+.startBarButton__logo {
+  width: 75%;
+}
