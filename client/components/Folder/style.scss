@@ -1,8 +1,12 @@
-.folderContainer {
+.folder {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  background: none;
+  border: none;
+  padding: 0;
   cursor: pointer;
   p {
     margin: 0px;

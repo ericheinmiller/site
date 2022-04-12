@@ -9,7 +9,9 @@ function App() {
   return (
     <div className={style.app}>
       <StartBar />
-      <Folder />
+      <Folder initialPosition={{ left: 5, top: 5 }} />
+      <Folder initialPosition={{ left: 5, top: 75 }} />
+      <Folder initialPosition={{ left: 5, top: 145 }} />
     </div>
   );
 }
