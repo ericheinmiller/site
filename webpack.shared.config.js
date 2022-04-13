@@ -15,6 +15,13 @@ module.exports = {
           publicPath: 'http://localhost:8080/',
         },
       },
+      {
+        test: /\.(pdf|docx|txt)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+        },
+      },
     ],
   },
   resolve: {

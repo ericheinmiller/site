@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Internet from './internet.png';
-import Sound from './sound.png';
+import Internet from '../../items/internet.png';
+import Sound from '../../items/sound.png';
 import style from './style.scss';
 
 export default function Clock() {

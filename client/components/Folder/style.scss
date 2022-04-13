@@ -10,10 +10,11 @@
   cursor: pointer;
   p {
     margin: 0px;
-    padding: 1px;
+    margin-top: -8px;
+    padding: 0;
     color: white;
     font-family: MyFont;
-    font-size: .5em;
+    font-size: .75em;
     border: 1px dotted teal;
   }
 }

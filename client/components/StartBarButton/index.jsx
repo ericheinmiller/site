@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './style.scss';
-import Logo from './startBarButton.png';
+import Logo from '../../items/startBarButton.png';
 
 export default function StartBarButton() {
   return (
