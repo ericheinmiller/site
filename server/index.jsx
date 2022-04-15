@@ -2,16 +2,16 @@ import React from 'react';
 import ReactDomServer from 'react-dom/server';
 import express from 'express';
 import App from '../client/components/App/index';
-import { PositionProvider } from '../client/context/position';
+import CombinedProviders from '../client/context/index';
 
 const app = express();
 const port = 3000;
 
 app.get('/', (req, res) => {
   const jsx = ReactDomServer.renderToString(
-    <PositionProvider>
+    <CombinedProviders>
       <App />
-    </PositionProvider>,
+    </CombinedProviders>,
   );
 
   const clientBundleScript = '<script src="http://localhost:8080/scripts/bundle.js"></script>';

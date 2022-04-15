@@ -1,43 +1,70 @@
 import React from 'react';
 import style from './style.scss';
-import StartBar from '../StartBar';
-import Folder from '../Folder';
-import { usePosition } from '../../context/position';
-import Window from '../Window';
+import StartBar from '../StartBar/startBar';
+import Folder from '../Folder/folder';
+import { useState, useDispatch } from '../../context/index';
+import Window from '../Window/window';
 // import StartMenu from './startMenu';
 
 function App() {
-  const { dispatch, state } = usePosition();
+  const state = useState();
+  const dispatch = useDispatch();
   const [windows, setWindows] = React.useState([]);
+
+  React.useEffect(() => {
+    windows.forEach((window) => {
+      if (window.title === state.toBeRemoved) {
+        setWindows(windows.filter((item) => item.title !== state.toBeRemoved));
+      }
+    });
+  }, [state.toBeRemoved]);
 
   const handleMouseMove = (e) => {
     if (state.targetElement === null) return;
     const left = e.clientX;
     const top = e.clientY;
     dispatch({
-      type: 'move',
+      type: 'moveTarget',
       payload: { top, left },
     });
   };
 
   const handleMouseUp = () => {
     dispatch({
-      type: 'unset',
+      type: 'unSelectTarget',
     });
   };
 
-  const handleWindow = () => {
-    setWindows([<Window initial={{ left: 100, top: 150 }} title="Resume"/>]);
+  const launchWindow = (title) => {
+    if (windows.length === 0) {
+      setWindows([{
+        title,
+        content: <Window initial={{ left: 100, top: 150 }} title={title} key={title} />,
+      }]);
+      return;
+    }
+    let exists = false;
+    windows.forEach((window) => {
+      if (window.title === title) {
+        exists = true;
+      }
+    });
+    if (!exists) {
+      setWindows([...windows, {
+        title,
+        content: <Window initial={{ left: 100, top: 150 }} title={title} key={title} />,
+      }]);
+    }
   };
 
   return (
     <div onMouseMove={(e) => handleMouseMove(e)} onMouseUp={() => handleMouseUp() } className={style.app}>
       <StartBar />
-      <Folder initial={{ left: 30, top: 5 }} title="Resume" window={handleWindow} />
-      <Folder initial={{ left: 30, top: 75 }} title="Social" window={handleWindow} />
-      <Folder initial={{ left: 30, top: 145 }} title="Contact" window={handleWindow} />
-      <Folder initial={{ left: 30, top: 215 }} title="Explorer" window={handleWindow} />
-      { windows }
+      <Folder initial={{ left: 30, top: 5 }} title="Resume" window={launchWindow} />
+      <Folder initial={{ left: 30, top: 75 }} title="Social" window={launchWindow} />
+      <Folder initial={{ left: 30, top: 145 }} title="Contact" window={launchWindow} />
+      <Folder initial={{ left: 30, top: 215 }} title="Explorer" window={launchWindow} />
+      { windows.map((window) => window.content) }
     </div>
   );
 }

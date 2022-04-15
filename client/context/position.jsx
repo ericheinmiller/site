@@ -1,19 +1,14 @@
-import React from 'react';
-
-const PositionContext = React.createContext();
-
-const initialState = {
+const positionState = {
   initialLeft: null,
   initialTop: null,
   top: null,
   left: null,
   targetElement: null,
-  windows: [],
 };
 
 function positionReducer(state, action) {
   switch (action.type) {
-    case 'set': {
+    case 'selectTarget': {
       return {
         ...state,
         initialLeft: action.payload.left,
@@ -21,7 +16,7 @@ function positionReducer(state, action) {
         targetElement: action.payload.targetElement,
       };
     }
-    case 'unset': {
+    case 'unSelectTarget': {
       return {
         ...state,
         top: null,
@@ -31,8 +26,7 @@ function positionReducer(state, action) {
         targetElement: null,
       };
     }
-    case 'move': {
-      console.log('yooooo lol');
+    case 'moveTarget': {
       const left = action.payload.left - state.initialLeft;
       const top = action.payload.top - state.initialTop;
       return {
@@ -45,18 +39,4 @@ function positionReducer(state, action) {
   }
 }
 
-function PositionProvider({ children }) {
-  const [state, dispatch] = React.useReducer(positionReducer, initialState);
-  const value = { state, dispatch };
-  return <PositionContext.Provider value={value}>{children}</PositionContext.Provider>;
-}
-
-function usePosition() {
-  const context = React.useContext(PositionContext);
-  if (context === undefined) {
-    throw new Error('useCount must be used within a CountProvider');
-  }
-  return context;
-}
-
-export { PositionProvider, usePosition };
+export { positionReducer, positionState };

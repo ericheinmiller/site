@@ -1,17 +1,18 @@
 import React from 'react';
 import UnClickedFolder from '../../items/folder_closed.png';
-import { usePosition } from '../../context/position';
+import { useState, useDispatch } from '../../context/index';
 import style from './style.scss';
 
 let timer = null;
 export default function Folder({ initial, title, window }) {
-  const [position, setPosition] = React.useState(initial);
+  const [modification, setModification] = React.useState(initial);
   const targetElement = React.useRef(null);
-  const { dispatch, state } = usePosition();
+  const state = useState();
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
     if (state.targetElement === targetElement && state.top !== null) {
-      setPosition({ top: state.top, left: state.left });
+      setModification({ top: state.top, left: state.left });
     }
   }, [state]);
 
@@ -19,7 +20,7 @@ export default function Folder({ initial, title, window }) {
     if (timer) {
       clearTimeout(timer);
       timer = null;
-      window();
+      window(title);
     } else {
       timer = setTimeout(100);
       return () => clearTimeout(timer);
@@ -30,7 +31,7 @@ export default function Folder({ initial, title, window }) {
     const left = e.clientX - parseInt(targetElement.current.style.left, 10);
     const top = e.clientY - parseInt(targetElement.current.style.top, 10);
     dispatch({
-      type: 'set',
+      type: 'selectTarget',
       payload: {
         left,
         top,
@@ -40,7 +41,7 @@ export default function Folder({ initial, title, window }) {
   };
 
   return (
-    <button onClick={(e) => handleClick(e)} draggable="false" ref={targetElement} onMouseDown={(e) => handleMouseDown(e)} type="button" className={style.folder} style={position}>
+    <button onClick={(e) => handleClick(e)} draggable="false" ref={targetElement} onMouseDown={(e) => handleMouseDown(e)} type="button" className={style.folder} style={modification}>
       <img draggable="false" alt="Folder" src={UnClickedFolder} />
       <p>{ title }</p>
     </button>

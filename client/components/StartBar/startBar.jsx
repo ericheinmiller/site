@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './style.scss';
-import StartBarButton from '../StartBarButton';
-import Clock from '../Clock';
+import StartBarButton from '../StartBarButton/startBarButton';
+import Clock from '../Clock/clock';
 // import StartBarButton from '../components/startBarButton';
 // import { toggleStartMenu } from '../actions/folderActions';
 

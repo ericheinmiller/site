@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-import { PositionProvider } from './context/position';
-console.log('this isfafl', PositionProvider);
+// import { PositionProvider } from './context/position';
+import CombinedProviders from './context/index';
+
+// console.log('this isfafl', PositionProvider);
 
 window.addEventListener('DOMContentLoaded', () => {
   ReactDOM.hydrate(
-    <PositionProvider>
+    <CombinedProviders>
       <App />
-    </PositionProvider>,
+    </CombinedProviders>,
     document.getElementById('ssr-app'),
   );
 });
